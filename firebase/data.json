@@ -1,0 +1,17 @@
+{
+  "movies": {
+    "m1": {
+      "title": "Inception",
+      "year": 2010,
+      "genre": "sci-fi",
+      "image": ""
+    },
+    "m2": {
+      "title": "Titanic",
+      "year": 1997,
+      "genre": "romance",
+      "image": ""
+    }
+  }
+
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #productContainer {
+            font-family: 'Courier New', Courier, monospace;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        #productContainer>div {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body onload="filterByCategory()">
+    <select id="categoryFilter" onchange="filterByCategory()">
+        <option value="all">All</option>
+        <option value="men's clothing">Men's clothing</option>
+        <option value="jewelery">Jewelery</option>
+        <option value="electronics">Electronics</option>
+        <option value="women's clothing">women's clothing</option>
+    </select>
+    <!-- <button id="btn" onclick="fetchproduct()">Fetch Products</button> -->
+    <div id="productContainer"></div>
+
+</body>
+
+</html>
+
+<script>
+    async function filterByCategory() {
+        // let button = document.getElementById("btn")
+        try {
+            // button.disabled = true
+            let response = await fetch("https://fakestoreapi.com/products")
+            let products = await response.json()
+
+            let selectedCategory = document.getElementById("categoryFilter").value
+
+            let filtredProduct = 
+            selectedCategory == "all"
+            ? products
+            : products.filter((product) => product.category == selectedCategory)
+
+            let container = document.getElementById("productContainer")
+            container.innerHTML = ""
+            
+            filtredProduct.forEach(product => {
+                let productBox = document.createElement("div")
+                productBox.innerHTML = `
+                 <h3>Title : ${product.title}</h3>
+                 <img src="${product.image}" alt="">
+                 <p>Price : ${product.price}</p>
+                `
+
+                container.appendChild(productBox)
+            });
+        } catch (error) {
+            alert("Failed to fetch the product")
+        }
+    }
+
+</script>
