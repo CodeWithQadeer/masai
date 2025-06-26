@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla DOM Example</title>
+  </head>
+  <body>
+    <h1 id="title">Original Title</h1>
+    <p>DOM Updates: <span id="vanilla-count">0</span></p>
+    <button onclick="changeTitleVanilla()">Change Title (Vanilla JS)</button>
+
+    <script>
+      let vanillaCount = 0;
+
+      function changeTitleVanilla() {
+        document.getElementById("title").innerText = "Updated by Vanilla JS";
+        vanillaCount++;
+        document.getElementById("vanilla-count").innerText = vanillaCount;
+      }
+    </script>
+  </body>
+</html>
